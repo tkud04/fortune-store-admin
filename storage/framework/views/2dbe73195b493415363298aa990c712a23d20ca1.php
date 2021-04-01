@@ -125,7 +125,7 @@ console.log(trmData);
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Total Orders</h5>
+                                        <h5 class="text-muted">Total Products</h5>
                                         <div class="metric-value d-inline-block">
                                             <h1 class="mb-1"><?php echo e($to); ?></h1>
                                         </div>
@@ -141,7 +141,7 @@ console.log(trmData);
                                     <div class="card-body">
                                         <h5 class="text-muted">Total Sales</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">&#0163;<?php echo e(number_format($tp,2)); ?></h1>
+                                            <h1 class="mb-1">&#8358;<?php echo e(number_format($tp,2)); ?></h1>
                                         </div>
                                         <div class="metric-label d-inline-block float-right <?php echo e($toClass); ?> font-weight-bold">
 										<?php echo $tpIcon; ?><span><?php echo e(ceil($tpp)); ?>%</span>
@@ -153,7 +153,7 @@ console.log(trmData);
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Total Customers</h5>
+                                        <h5 class="text-muted">Total Users</h5>
                                         <div class="metric-value d-inline-block">
                                             <h1 class="mb-1"><?php echo e($tu); ?></h1>
                                         </div>
@@ -343,7 +343,7 @@ console.log(trmData);
                             <!-- ============================================================== -->
                             <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
                                 <div class="card">
-                                    <h5 class="card-header">Revenue Category</h5>
+                                    <h5 class="card-header">Revenue by Category</h5>
                                     <div class="card-body">
                                         <div id="revenue_by_room_category" style="height: 420px;"></div>
                                     </div>

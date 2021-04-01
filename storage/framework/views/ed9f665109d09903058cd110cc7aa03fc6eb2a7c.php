@@ -33,7 +33,6 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="<?php echo e(url('categories')); ?>">Categories</a>
                                             <a class="nav-link" href="<?php echo e(url('products')); ?>">Products</a>
-                                            <a class="nav-link" href="<?php echo e(url('manufacturers')); ?>">Manufacturers</a>
                                             <a class="nav-link" href="<?php echo e(url('information')); ?>">Information</a>
                                         </li>
                                     </ul>
