@@ -72,15 +72,16 @@ $(document).ready(() => {
                                                <label for="aat-message">Description</label>
                                                <textarea class="form-control" placeholder="Your message" id="add-product-description"></textarea>
                                             </div>
-											<div class="form-group mt-2">
-                                              <label>Meta tag title <span class="req">*</span></label>
+											
+											<div class="form-group mt-2 vhj">
+                                              <label>Meta tag title</label>
                                               <input id="add-product-meta-title" type="text" placeholder="Meta tag title" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>Meta tag Description</label>
                                                <textarea id="add-product-meta-description" class="form-control" placeholder="Meta tag description" rows="8"></textarea>
                                             </div>
-											<div class="form-group mt-2 d-inline">
+											<div class="form-group mt-2 vhj">
                                               <label>Meta tag keywords</label>
                                               <input id="add-product-meta-keywords" type="text" placeholder="Meta tag keywords" class="form-control">
                                             </div>
@@ -95,54 +96,55 @@ $(document).ready(() => {
 									    <div class="row">
 										  <div class="col-md-12">
 										    <div class="form-group">
-                                              <label>Model <span class="req">*</span></label>
+                                               <label>
+											   SKU <span class="req">*</span> <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Store Keeping Unit"><i class="fas fa-question-circle"></i> </a>
+											   </label>
+                                               <input id="add-product-sku" type="text" value="Will be generated" class="form-control" readonly>
+                                            </div>
+										    <div class="form-group mt-2 vhj">
+                                              <label>Model</label>
                                               <input id="add-product-model" type="text" placeholder="Model" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
-                                               <label>
-											   SKU <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Store Keeping Unit"><i class="fas fa-question-circle"></i> </a>
-											   </label>
-                                               <input id="add-product-sku" type="text" placeholder="SKU" class="form-control">
-                                            </div>
-											<div class="form-group mt-2">
+											
+											<div class="form-group mt-2 vhj">
                                               <label>
 											   UPC <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Universal Product Code"><i class="fas fa-question-circle"></i> </a>
 											   </label>
                                                <input id="add-product-upc" type="text" placeholder="UPC" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                 <label>
 											   EAN <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="European Article Number"><i class="fas fa-question-circle"></i> </a>
 											   </label>
                                                <input id="add-product-ean" type="text" placeholder="EAN" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>
 											   JAN <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Japanese Article Number"><i class="fas fa-question-circle"></i> </a>
 											   </label>
                                                <input id="add-product-jan" type="text" placeholder="JAN" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>
 											   ISBN <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="International Standard Book Number"><i class="fas fa-question-circle"></i> </a>
 											   </label>
                                                <input id="add-product-isbn" type="text" placeholder="ISBN" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>
 											   MPN <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Manufacturer Part Number"><i class="fas fa-question-circle"></i> </a>
 											   </label>
                                                <input id="add-product-mpn" type="text" placeholder="MPN" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>Location</label>
                                                <input id="add-product-location" type="text" placeholder="Location" class="form-control">
                                             </div>
 											<div class="form-group mt-2">
-                                               <label> Price</label>
+                                               <label> Price (&#8358;) <span class="req">*</span></label>
                                                <input id="add-product-price" type="text" placeholder="Price" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>Tax class</label>
                                                <select id="add-product-tax-class" class="form-control">
 											    <?php
@@ -162,13 +164,13 @@ $(document).ready(() => {
                                                <label>Quantity </label>
                                                <input id="add-product-qty" type="number" placeholder="Quantity" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>
 											   Minimum quantity <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Force a minimum ordered amount"><i class="fas fa-question-circle"></i> </a>
 											   </label>
                                                <input id="add-product-min-qty" type="text" placeholder="MPN" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>Requires shipping</label>
                                                <select id="add-product-shipping" class="form-control">
 											     <option value="none">Requires shipping?</option>
@@ -176,7 +178,7 @@ $(document).ready(() => {
 											     <option value="no">No</option>
 											   </select>
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>Date available</label>
                                                <input id="add-product-date-available" type="date" placeholder="Date available" class="form-control">
                                             </div>
@@ -222,7 +224,7 @@ $(document).ready(() => {
 									   
 									    <div class="row">
 										  <div class="col-md-12">
-										    <div class="form-group">
+										    <div class="form-group vhj">
                                               <label>Manufacturer <span class="req">*</span></label>
                                               <select id="add-product-manufacturer" class="form-control">
 											     <option value="none">Select manufacturer</option>

@@ -804,7 +804,7 @@ $subject = $data['subject'];
 		   
 		   function generateSKU()
            {
-           	$ret = "MBZ".rand(1,9999)."LX".rand(1,999);
+           	$ret = "LXFBR".rand(1,9999)."LX".rand(1,999);
                                                       
                 return $ret;
            }
@@ -821,7 +821,8 @@ $subject = $data['subject'];
 				$ret['meta_description'] = isset($data['meta_description']) && $data['meta_description'] != null ? $data['meta_description'] : "";
 				$ret['meta_keywords'] = isset($data['meta_keywords']) && $data['meta_keywords'] != null ? $data['meta_keywords'] : "";
 				$ret['model'] = isset($data['model']) && $data['model'] != null ? $data['model'] : "";
-				$ret['sku'] = isset($data['sku']) && $data['sku'] != null ? $data['sku'] : "";
+				//$ret['sku'] = isset($data['sku']) && $data['sku'] != null ? $data['sku'] : "";
+				$ret['sku'] = $this->generateSKU(5);
 				$ret['upc'] = isset($data['upc']) && $data['upc'] != null ? $data['upc'] : "";
 				$ret['ean'] = isset($data['ean']) && $data['ean'] != null ? $data['ean'] : "";
 				$ret['jan'] = isset($data['jan']) && $data['jan'] != null ? $data['jan'] : "";
@@ -860,6 +861,7 @@ $subject = $data['subject'];
 				         'product_id' => $rett->id,
 				         'amount' => $ret['amount'],
 				         'description' => $ret['description'],
+				         'special' => "",
 				         'meta_title' => $ret['meta_title'],
 				         'meta_description' => $ret['meta_description'],
 				         'meta_keywords' => $ret['meta_keywords'],
@@ -903,6 +905,7 @@ $subject = $data['subject'];
 				         'product_id' => $data['product_id'],
 				         'amount' => $data['amount'],
 				         'description' => $data['description'],
+				         'special' => $data['special'],
 				         'meta_title' => $data['meta_title'],
 				         'meta_description' => $data['meta_description'],
 				         'meta_keywords' => $data['meta_keywords'],
@@ -1000,6 +1003,7 @@ $subject = $data['subject'];
 				  $temp['product_id'] = $pd->product_id;
 				  $temp['amount'] = $pd->amount;
 				  $temp['description'] = $pd->description;
+				  $temp['special'] = $pd->special;
 				  $temp['meta_title'] = $pd->meta_title;
 				  $temp['meta_description'] = $pd->meta_description;
 				  $temp['meta_keywords'] = $pd->meta_keywords;
@@ -1055,6 +1059,7 @@ $subject = $data['subject'];
 				$ret['name'] = isset($data['name']) && $data['name'] != null ? $data['name'] : "";
 				$ret['amount'] = isset($data['price']) && $data['price'] != null ? $data['price'] : "0";
 				$ret['description'] = isset($data['description']) && $data['description'] != null ? $data['description'] : "";
+				$ret['special'] = isset($data['special']) && $data['special'] != null ? $data['special'] : "";
 				$ret['meta_title'] = isset($data['meta_title']) && $data['meta_title'] != null ? $data['meta_title'] : "";
 				$ret['meta_description'] = isset($data['meta_description']) && $data['meta_description'] != null ? $data['meta_description'] : "";
 				$ret['meta_keywords'] = isset($data['meta_keywords']) && $data['meta_keywords'] != null ? $data['meta_keywords'] : "";
@@ -1097,6 +1102,7 @@ $subject = $data['subject'];
 				         'product_id' => $p->id,
 				         'amount' => $ret['amount'],
 				         'description' => $ret['description'],
+				         'special' => $ret['special'],
 				         'meta_title' => $ret['meta_title'],
 				         'meta_description' => $ret['meta_description'],
 				         'meta_keywords' => $ret['meta_keywords'],

@@ -2245,11 +2245,13 @@ class MainController extends Controller {
 				
 				$validator = Validator::make($req,[
 		                    'xf' => 'required',
-		                    'name' => 'required',
-		                    'meta_title' => 'required',
-		                    'model' => 'required',
+		                     'name' => 'required',
+		                    //'meta_title' => 'required|unique:product_data',
+		                    //'model' => 'required',
+		                    'sku' => 'required',
+		                    'price' => 'required|numeric',
 		                    'category' => 'required|not_in:none',
-		                    'manufacturer' => 'required|not_in:none',
+		                    //'manufacturer' => 'required|not_in:none',
 		                    'status' => 'required|not_in:none',
 		                   ]);
 						

@@ -82,15 +82,15 @@ $(document).ready(() => {
                                                <label for="aat-message">Description</label>
                                                <textarea class="form-control" placeholder="Your message" id="product-description"></textarea>
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                               <label>Meta tag title <span class="req">*</span></label>
                                               <input id="product-meta-title" value="{{$pd['meta_title']}}" type="text" placeholder="Meta tag title" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>Meta tag Description</label>
                                                <textarea id="product-meta-description" value="{{$pd['meta_description']}}" class="form-control" placeholder="Meta tag description" rows="8"></textarea>
                                             </div>
-											<div class="form-group mt-2 d-inline">
+											<div class="form-group mt-2 vhj">
                                               <label>Meta tag keywords</label>
                                               <input id="product-meta-keywords" type="text" value="{{$pd['meta_keywords']}}" placeholder="Meta tag keywords" class="form-control">
                                             </div>
@@ -104,55 +104,77 @@ $(document).ready(() => {
 									   
 									    <div class="row">
 										  <div class="col-md-12">
-										    <div class="form-group">
-                                              <label>Model <span class="req">*</span></label>
-                                              <input id="product-model" type="text" value="{{$p['model']}}" placeholder="Model" class="form-control">
-                                            </div>
-											<div class="form-group mt-2">
+										    <div class="form-group ">
                                                <label>
 											   SKU <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Store Keeping Unit"><i class="fas fa-question-circle"></i> </a>
 											   </label>
-                                               <input id="product-sku" type="text" value="{{$p['sku']}}" placeholder="SKU" class="form-control">
+                                               <input id="product-sku" type="text" value="{{$p['sku']}}" placeholder="SKU" class="form-control" readonly>
                                             </div>
 											<div class="form-group mt-2">
+                                               <label>Special tag</label>
+                                               <select id="product-special" class="form-control">
+											    <option value="none">Select special tag</option>
+											   <?php
+											     $spts = [
+														  'sale' => "Sale",
+												          'bestseller' => "Bestseller",
+												          'featured' => "Featured"
+														];
+												  
+												  foreach($spts as $k => $v)
+												  {
+												  $ss = $pd['special'] == $k ? " selected='selected'" : "";
+												 ?>
+											     <option value="{{$k}}"{{$ss}}>{{$v}}</option>
+												 <?php
+												  }
+												 ?>
+											   </select>
+                                            </div>
+										    <div class="form-group mt-2 vhj">
+                                              <label>Model <span class="req">*</span></label>
+                                              <input id="product-model" type="text" value="{{$p['model']}}" placeholder="Model" class="form-control">
+                                            </div>
+											
+											<div class="form-group mt-2 vhj">
                                               <label>
 											   UPC <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Universal Product Code"><i class="fas fa-question-circle"></i> </a>
 											   </label>
                                                <input id="product-upc" type="text" value="{{$p['upc']}}" placeholder="UPC" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                 <label>
 											   EAN <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="European Article Number"><i class="fas fa-question-circle"></i> </a>
 											   </label>
                                                <input id="product-ean" type="text" value="{{$p['ean']}}" placeholder="EAN" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>
 											   JAN <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Japanese Article Number"><i class="fas fa-question-circle"></i> </a>
 											   </label>
                                                <input id="product-jan" type="text" value="{{$p['jan']}}" placeholder="JAN" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>
 											   ISBN <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="International Standard Book Number"><i class="fas fa-question-circle"></i> </a>
 											   </label>
                                                <input id="product-isbn" type="text" value="{{$p['isbn']}}" placeholder="ISBN" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>
 											   MPN <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Manufacturer Part Number"><i class="fas fa-question-circle"></i> </a>
 											   </label>
                                                <input id="product-mpn" type="text" value="{{$p['mpn']}}" placeholder="MPN" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>Location</label>
                                                <input id="product-location" type="text" value="{{$pd['location']}}" placeholder="Location" class="form-control">
                                             </div>
 											<div class="form-group mt-2">
                                                <label> Price (&#163;)</label>
-                                               <input id="product-price" type="text" value="{{number_format($pd['amount'],2)}}" placeholder="Price" class="form-control">
+                                               <input id="product-price" type="text" value="{{$pd['amount']}}" placeholder="Price" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>Tax class</label>
                                                <select id="product-tax-class" class="form-control">
 											   <?php
@@ -172,13 +194,13 @@ $(document).ready(() => {
                                                <label>Quantity </label>
                                                <input id="product-qty" type="number" value="{{$p['qty']}}" placeholder="Quantity" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>
 											   Minimum quantity <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Force a minimum ordered amount"><i class="fas fa-question-circle"></i> </a>
 											   </label>
                                                <input id="product-min-qty" type="text" value="{{$pd['min_qty']}}" placeholder="MPN" class="form-control">
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>Requires shipping</label>
                                                <select id="product-shipping" class="form-control">
 											   <?php
@@ -194,7 +216,7 @@ $(document).ready(() => {
 												 ?>
 											   </select>
                                             </div>
-											<div class="form-group mt-2">
+											<div class="form-group mt-2 vhj">
                                                <label>Date available</label>
                                                <input id="product-date-available" type="date" value="{{$da->format('Y-m-d')}}" placeholder="Date available" class="form-control">
                                             </div>
@@ -248,7 +270,7 @@ $(document).ready(() => {
 									   
 									    <div class="row">
 										  <div class="col-md-12">
-										    <div class="form-group">
+										    <div class="form-group vhj">
                                               <label>Manufacturer <span class="req">*</span></label>
                                               <select id="product-manufacturer" class="form-control">
 											     <option value="none">Select manufacturer</option>

@@ -42,7 +42,6 @@ $subtitle = "View all products";
                                             <tr>
                                                 <th>Image</th>
                                                 <th>Product name</th>
-												<th>Model</th>
                                                 <th>Price</th>
                                                 <th>Quantity</th>
                                                 <th>Status</th>
@@ -77,11 +76,29 @@ $subtitle = "View all products";
 												   $dr = url('remove-product')."?xf=".$p['id'];
 												   #$ar = $a['rating'];
 												   $ar = 3;
+											   
+											   $special = "";
+											   
+											   if($pd['special'] == "sale")
+												{
+													 $special = "<span class='label label-warning'>SALE</span>";
+												}
+												else if($pd['special'] == "bestseller")
+												{
+													 $special = "<span class='label label-success'>BEST SELLER</span>";
+												}
+												else if($pd['special'] == "featured")
+												{
+													 $special = "<span class='label label-primary'>BEST SELLER</span>";
+												}
 										  ?>
                                             <tr>
                                                <td><img class="img-fluid" onclick="window.location='<?php echo e($uu); ?>'" src="<?php echo e($imgs[0]); ?>" alt="<?php echo e($name); ?>" style="cursor: pointer; width: 100px; height: 100px;"/></td> 
-											   <td> <a href="<?php echo e($uu); ?>"><h4><?php echo e(ucwords($name)); ?></h4></a> </td> 
-												<td><a href="<?php echo e($uu); ?>"><h4><?php echo e($p['model']); ?></h4></a></td>	
+											   <td>
+											     <a href="<?php echo e($uu); ?>"><h4><?php echo e($p['sku']); ?></h4></a><br>
+											     <a href="<?php echo e($uu); ?>"><h4><?php echo e(ucwords($name)); ?></h4></a><br>
+												  <h5><?php echo $special; ?></h5>
+											   </td> 
                                                 <td>&#163;<?php echo e(number_format($pd['amount'],2)); ?></td>
 												<td><?php echo e($p['qty']); ?></td>
                                                 <td><span class="label label-<?php echo e($statusClass); ?>"><?php echo e(strtoupper($sss)); ?></span></td>

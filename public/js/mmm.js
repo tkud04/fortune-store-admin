@@ -17,6 +17,8 @@ $(document).ready(function() {
 	
 	hideElem(["#sps-row","#add-product-loading"]);
 	
+	hideElem([".vhj"]);
+	
 	/**
 	//Init wysiwyg editors
 	Simditor.locale = 'en-US';
@@ -616,7 +618,7 @@ $(document).ready(function() {
 		   apWidth = $('#add-product-width').val(), apHeight = $('#add-product-height').val(), apLength = $('#add-product-length').val(),
 		   apStatus = $('#add-product-status').val(), apManufacturer = $('#add-product-manufacturer').val(), apSEO = $('#add-seo-keywords').val(),
 		   
-		   validation = (apName == "" || apMetaTitle == "" || apModel == "" || apManufacturer == "none" || apCategory == "none"),
+		   validation = (apName == "" || apPrice == "" || apCategory == "none"),
 		   apImages = $(`#add-product-images input[type=file]`), emptyImage = false;
 		   
 		   for(let i = 0; i < apImages.length; i++){
@@ -698,7 +700,7 @@ $(document).ready(function() {
 	   //side 1 validation
 	   let apXF = $('#product-xf').val(), apName = $('#product-name').val(), apMetaTitle = $('#product-meta-title').val(), apPrice = $('#product-price').val(),
 	   apMetaDescription = $('#product-meta-description').val(),apMetaKeywords = $('#product-meta-keywords').val(),apDescription = $('#product-description').val(),
-	       apCategory = $('#product-category').val(), apModel = $('#product-model').val(),apSKU = $('#product-sku').val(),
+	       apCategory = $('#product-category').val(), apModel = $('#product-model').val(),apSKU = $('#product-sku').val(),apSpecial = $('#product-special').val(),
 	       apUPC = $('#product-upc').val(), apEAN = $('#product-ean').val(), apJAN = $('#product-jan').val(),
 		   apISBN = $('#product-isbn').val(), apMPN = $('#product-mpn').val(), apLocation = $('#product-location').val(),
 		   apTaxClass = $('#product-tax-class').val(), apQty = $('#product-qty').val(), apMinQty = $('#product-min-qty').val(),
@@ -706,7 +708,7 @@ $(document).ready(function() {
 		   apWidth = $('#product-width').val(), apHeight = $('#product-height').val(), apLength = $('#product-length').val(),
 		   apStatus = $('#product-status').val(), apManufacturer = $('#product-manufacturer').val(), apSEO = $('#add-seo-keywords').val(),
 		   
-		   validation = (apXF == "" || apName == "" || apMetaTitle == "" || apModel == "" || apManufacturer == "none" || apCategory == "none"),
+		   validation = (apXF == "" || apName == "" || apPrice == "" || apCategory == "none"),
 		   apImages = $(`#product-images input[type=file]`), emptyImage = false;
 		   
 		   for(let i = 0; i < apImages.length; i++){
@@ -732,6 +734,7 @@ $(document).ready(function() {
 		 fd.append("meta_keywords",apMetaKeywords);
 		 fd.append("model",apModel);
 		 fd.append("sku",apSKU);
+		 fd.append("special",apSpecial);
 		 fd.append("upc",apUPC);
 		 fd.append("ean",apEAN);
 		 fd.append("jan",apJAN);
