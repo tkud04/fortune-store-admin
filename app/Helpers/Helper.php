@@ -736,7 +736,7 @@ $subject = $data['subject'];
                
 			   else
 			   {
-				    $ret = "https://res.cloudinary.com/dkrf5ih0l/image/upload/v1585236664/".$dt;
+				    $ret = "https://res.cloudinary.com/dq1kuzafi/image/upload/v1585236664/".$dt;
                 }
 				
 				return $ret;
@@ -766,7 +766,7 @@ $subject = $data['subject'];
 							 }
 							 else
 							 {
-								 $imgg = "https://res.cloudinary.com/dkrf5ih0l/image/upload/v1585236664/".$ird;
+								 $imgg = "https://res.cloudinary.com/dq1kuzafi/image/upload/v1585236664/".$ird;
 							 }
                             
                             array_push($ret,$imgg); 
@@ -1324,7 +1324,7 @@ $subject = $data['subject'];
 		   
 		  function deleteCloudImage($id)
           {
-          	$dt = ['cloud_name' => "dkrf5ih0l",'invalidate' => true];
+          	$dt = ['cloud_name' => "dq1kuzafi",'invalidate' => true];
           	$rett = \Cloudinary\Uploader::destroy($id,$dt);
                                                      
              return $rett; 
@@ -1342,8 +1342,8 @@ $subject = $data['subject'];
 		    function uploadCloudImage($path)
           {
           	$ret = [];
-          	$dt = ['cloud_name' => "dkrf5ih0l"];
-              $preset = "fk6fcwlg";
+          	$dt = ['cloud_name' => "dq1kuzafi"];
+              $preset = "hkbfog9w";
           	$rett = \Cloudinary\Uploader::unsigned_upload($path,$preset,$dt);
                                                       
              return $rett; 

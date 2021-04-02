@@ -60,7 +60,7 @@ class MainController extends Controller {
 			}
 			else
 			{
-				$u = "http://themobilebuzz.co.uk";
+				$u = "http://luxfabriqs.tobi-demos.tk";
 				return redirect()->away($u);
 			}
 		}
@@ -2005,10 +2005,12 @@ class MainController extends Controller {
 				
 				$validator = Validator::make($req,[
 		                    'name' => 'required',
-		                    'meta_title' => 'required|unique:product_data',
-		                    'model' => 'required',
+		                    //'meta_title' => 'required|unique:product_data',
+		                    //'model' => 'required',
+		                    'sku' => 'required',
+		                    'price' => 'required|numeric',
 		                    'category' => 'required|not_in:none',
-		                    'manufacturer' => 'required|not_in:none',
+		                    //'manufacturer' => 'required|not_in:none',
 		                    'status' => 'required|not_in:none',
 		                   ]);
 						
