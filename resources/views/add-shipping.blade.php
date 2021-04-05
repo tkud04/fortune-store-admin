@@ -32,7 +32,7 @@ $subtitle = "Add new shipping information.";
 										<div class="col-md-12">
 										<div class="form-group">
                                             <label for="ash-value">Value</label>
-                                             <textarea class="form-control" name="value" id="ap-value"></textarea>
+                                             <input id="ash-value" type="text" value="{{$s['value']}}" placeholder="Value" name="value" class="form-control">
                                         </div>
 										</div>
 										
