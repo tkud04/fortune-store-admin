@@ -1271,7 +1271,7 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getShipping(Request $request)
+	public function getEdittShipping(Request $request)
     {
 		$user = null;
 		$nope = false;
@@ -1345,7 +1345,7 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function postShipping(Request $request)
+	public function postEditShipping(Request $request)
     {
 		$user = null;
 		if(Auth::check())
