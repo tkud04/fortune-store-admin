@@ -3191,7 +3191,7 @@ function getRandomString($length_of_string)
 	   return $ret;
    }
    
-   function getShipping($id)
+   function getShippingSingle($id)
            {
            	$ret = [];
                $s = Shipping::where('id',$id)->first();
