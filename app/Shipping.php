@@ -15,4 +15,6 @@ class Shipping extends Model
     protected $fillable = [
         'name', 'value'
     ];
+
+    protected $table = 'shipping';
 }
