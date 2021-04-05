@@ -102,6 +102,14 @@ Route::get('plugin', 'MainController@getPlugin');
 Route::post('plugin', 'MainController@postPlugin');
 Route::get('remove-plugin', 'MainController@getRemovePlugin');
 
+//Shipping
+Route::get('shipping', 'MainController@getShipping');
+Route::get('add-shipping', 'MainController@getAddShipping');
+Route::post('add-shipping', 'MainController@postAddShipping');
+Route::get('edit-shipping', 'MainController@getEditShipping');
+Route::post('edit-shipping', 'MainController@postEditShipping');
+Route::get('remove-shipping', 'MainController@getRemoveShipping');
+
 //Banners
 Route::get('banners', 'MainController@getBanners');
 Route::get('add-banner', 'MainController@getAddBanner');
