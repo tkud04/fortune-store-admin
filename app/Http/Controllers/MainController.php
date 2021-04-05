@@ -1271,7 +1271,7 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getEdittShipping(Request $request)
+	public function getEditShipping(Request $request)
     {
 		$user = null;
 		$nope = false;
