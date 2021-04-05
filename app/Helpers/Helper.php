@@ -3183,7 +3183,7 @@ function getRandomString($length_of_string)
 	   {
 		   foreach($shipping as $s)
 		   {
-		     $temp = $this->getShipping($s->id);
+		     $temp = $this->getShippingSingle($s->id);
 		     array_push($ret,$temp);
 	       }
 	   }
