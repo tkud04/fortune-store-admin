@@ -41,8 +41,8 @@ $subtitle = "View all shipping info.";
                                         <thead>
                                             <tr>
                                                  <th>Name</th>
-                                                 <th>Code snippet</th>
-                                                 <th>Status</th>
+                                                 <th>Amount</th>
+                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -60,7 +60,7 @@ $subtitle = "View all shipping info.";
 										  ?>
                                             <tr>
                                                 <td>{{ $name }}</td>
-					                            <td><code>{{ $value }}</code></td>
+					                            <td>&#8358;{{ $value }}</td>
 					                           
 					                            <td>
 						                          <a class="btn btn-default btn-block btn-clean" href="{{$vu}}">View</a>

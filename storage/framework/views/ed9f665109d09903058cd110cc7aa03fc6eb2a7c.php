@@ -34,6 +34,7 @@
                                             <a class="nav-link" href="<?php echo e(url('categories')); ?>">Categories</a>
                                             <a class="nav-link" href="<?php echo e(url('products')); ?>">Products</a>
                                             <a class="nav-link" href="<?php echo e(url('information')); ?>">Information</a>
+                                            <a class="nav-link" href="<?php echo e(url('shipping')); ?>">Shipping</a>
                                         </li>
                                     </ul>
                                 </div>

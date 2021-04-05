@@ -129,9 +129,9 @@ class Helper implements HelperContract
                      "update-manufacturer-status-error" => "There was a problem updating the manufacturer, please try again.",
 					 "add-information-status-error" => "There was a problem adding information, please try again.",
 					 "update-information-status-error" => "There was a problem updating information, please try again.",
-					 "add-shipping-status" => "There was a problem adding the shipping info, please try again.",
-                     "update-shipping-status" => "There was a problem updating the shipping info, please try again.",
-                     "remove-shipping-status" => "There was a problem removing the shipping info, please try again.",
+					 "add-shipping-status-error" => "There was a problem adding the shipping info, please try again.",
+                     "update-shipping-status-error" => "There was a problem updating the shipping info, please try again.",
+                     "remove-shipping-status-error" => "There was a problem removing the shipping info, please try again.",
                    ],
 				   'errors' => []
 				   ];
