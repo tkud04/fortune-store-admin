@@ -1130,6 +1130,8 @@ class MainController extends Controller {
 				if($hasPermission)
 				{
 				 $v = "shipping";
+				 $shipping = $this->helpers->getShipping();
+				 array_push($cpt,'shipping');
 				}
 				else
 				{
@@ -1297,16 +1299,16 @@ class MainController extends Controller {
 				if(isset($req['s']))
 				{
 					$v = "edit-shipping";
-					$p = $this->helpers->getShipping($req['s']);
+					$s = $this->helpers->getShippingSingle($req['s']);
 					
-					if(count($p) < 1)
+					if(count($s) < 1)
 					{
 						session()->flash("validation-status-error","ok");
 						return redirect()->intended('shipping');
 					}
 					else
 					{
-						array_push($cpt,'p');                                 
+						array_push($cpt,'s');                                 
 					}
 					
 				}
