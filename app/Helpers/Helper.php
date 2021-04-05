@@ -29,6 +29,7 @@ use App\Wishlists;
 use App\Senders;
 use App\Settings;
 use App\Plugins;
+use App\Shipping;
 use App\Couriers;
 use App\Comparisons;
 use \Swift_Mailer;
@@ -80,6 +81,9 @@ class Helper implements HelperContract
                      "add-plugin-status" => "Plugin added",
                      "update-plugin-status" => "Plugin updated",
                      "remove-plugin-status" => "Plugin removed",
+					 "add-shipping-status" => "Shipping info added",
+                     "update-shipping-status" => "Shipping info updated",
+                     "remove-shipping-status" => "Shipping info removed",
                      "add-sender-status" => "Sender added",
                      "remove-sender-status" => "Sender removed",
                      "mark-sender-status" => "Sender updated",
@@ -125,6 +129,9 @@ class Helper implements HelperContract
                      "update-manufacturer-status-error" => "There was a problem updating the manufacturer, please try again.",
 					 "add-information-status-error" => "There was a problem adding information, please try again.",
 					 "update-information-status-error" => "There was a problem updating information, please try again.",
+					 "add-shipping-status" => "There was a problem adding the shipping info, please try again.",
+                     "update-shipping-status" => "There was a problem updating the shipping info, please try again.",
+                     "remove-shipping-status" => "There was a problem removing the shipping info, please try again.",
                    ],
 				   'errors' => []
 				   ];
@@ -3152,6 +3159,93 @@ function getRandomString($length_of_string)
 			 }
            
            }
+		   
+		   
+		   		 function createShipping($data)
+           {
+			   #dd($data);
+			 $ret = null;
+			 
+			 
+				 $ret = Shipping::create(['name' => $data['name'], 
+                                                      'value' => $data['value']
+                                                      ]);
+			  return $ret;
+           }
+
+   function getShipping()
+   {
+	   $ret = [];
+	   
+	   $shipping = Shipping::where('id','>',"0")->get();
+	   
+	   if(!is_null($shipping))
+	   {
+		   foreach($shipping as $s)
+		   {
+		     $temp = $this->getShipping($s->id);
+		     array_push($ret,$temp);
+	       }
+	   }
+	   
+	   return $ret;
+   }
+   
+   function getShipping($id)
+           {
+           	$ret = [];
+               $s = Shipping::where('id',$id)->first();
+ 
+              if($s != null)
+               {
+                   	$temp['name'] = $s->name; 
+                       $temp['value'] = $s->value; 	 
+                       $temp['id'] = $s->id; 
+                       $temp['date'] = $s->created_at->format("jS F, Y"); 
+                       $temp['updated'] = $s->updated_at->format("jS F, Y"); 
+                       $ret = $temp; 
+               }                          
+                                                      
+                return $ret;
+           }
+		   
+		   
+		  function updateShipping($data,$user=null)
+           {
+			   #dd($data);
+			 $ret = "error";
+			  $s = Shipping::where('id',$data['xf'])->first();
+			 
+			 
+			 if(!is_null($s))
+			 {
+				 $s->update(['name' => $data['name'], 
+                                                      'value' => $data['value']
+                                                      ]);
+			   $ret = "ok";
+			 }
+           	
+                                                      
+                return $ret;
+           }
+
+		   function removeShipping($xf,$user=null)
+           {
+			   #dd($data);
+			 $ret = "error";
+			 $s = Shipping::where('id',$xf)->first();
+
+			 
+			 if(!is_null($s))
+			 {
+				 $s->delete();
+			   $ret = "ok";
+			 }
+           
+           }
+		   
+		   
+		   
 		   
 		    function getSiteStats()
 		   {
