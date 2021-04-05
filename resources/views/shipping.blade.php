@@ -53,8 +53,8 @@ $subtitle = "View all shipping info.";
 											   {
 												    $name = $s['name'];
 							                        $value = $s['value'];
-							                        $vu = url('shipping')."?s=".$p['id'];
-							                        $ru = url('remove-shipping')."?s=".$p['id'];
+							                        $vu = url('edit-shipping')."?s=".$s['id'];
+							                        $ru = url('remove-shipping')."?s=".$s['id'];
 							
 							                     
 										  ?>
