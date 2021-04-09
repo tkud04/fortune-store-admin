@@ -1909,11 +1909,18 @@ $subject = $data['subject'];
 		   
 		    function createBanner($data)
            {
-			   $copy = isset($data['copy']) ? $data['copy'] : "";
-           	$ret = Banners::create(['img' => $data['img'], 
+			   $title = isset($data['title']) ? $data['title'] : "";
+			   $subtitle_1 = isset($data['subtitle_1']) ? $data['subtitle_1'] : "";
+			   $subtitle_2 = isset($data['subtitle_2']) ? $data['subtitle_2'] : "";
+			   
+			   $title = isset($data['title']) ? $data['title'] : "";
+           	$ret = Banners::create(['url' => $data['ird'], 
+                                                      'type' => $data['type'], 
                                                       'title' => $data['title'], 
-                                                      'subtitle' => $data['subtitle'], 
-                                                      'copy' => $copy, 
+                                                      'cover' => $data['cover'], 
+                                                      'subtitle_1' => $subtitle_1, 
+                                                      'subtitle_2' => $subtitle_2, 
+                                                      'delete_token' => $data['delete_token'], 
                                                       'status' => $data['status'] 
                                                       ]);
                                                       
@@ -1931,12 +1938,15 @@ $subject = $data['subject'];
 				   {
 					   $temp = [];
 					   $temp['id'] = $b->id;
-					   $img = $b->img;
+					   $img = $b->url;
 					   $temp['img'] = $this->getCloudinaryImage($img);
 					   $temp['title'] = $b->title;
-					   $temp['subtitle'] = $b->subtitle;
-					   $temp['copy'] = $b->copy;
+					   $temp['cover'] = $b->cover;
+					   $temp['subtitle_1'] = $b->subtitle_1;
+					   $temp['subtitle_2'] = $b->subtitle_2;
+					   $temp['delete_token'] = $b->delete_token;
 					   $temp['status'] = $b->status;
+					   $temp['date'] = $b->created_at->format("jS F, Y h:i A");
 					   array_push($ret,$temp);
 				   }
 			   }
@@ -1953,12 +1963,15 @@ $subject = $data['subject'];
 			   {
 					   $temp = [];
 					   $temp['id'] = $b->id;
-					   $img = $b->img;
+					   $img = $b->url;
 					   $temp['img'] = $this->getCloudinaryImage($img);
 					   $temp['title'] = $b->title;
-					   $temp['subtitle'] = $b->subtitle;
-					   $temp['copy'] = $b->copy;
+					   $temp['cover'] = $b->cover;
+					   $temp['subtitle_1'] = $b->subtitle_1;
+					   $temp['subtitle_2'] = $b->subtitle_2;
+					   $temp['delete_token'] = $b->delete_token;
 					   $temp['status'] = $b->status;
+					   $temp['date'] = $b->created_at->format("jS F, Y h:i A");
 					   $ret = $temp;
 			   }
 			   

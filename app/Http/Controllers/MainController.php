@@ -4227,6 +4227,7 @@ class MainController extends Controller {
 				$hasPermission = $this->helpers->hasPermission($user->id,['view_banners','edit_banners']);
 				#dd($hasPermission);
 				$req = $request->all();
+				$req['type'] = "landing";
 				
 				if($hasPermission)
 				{
