@@ -39,7 +39,7 @@ $subtitle = "View all user reviews";
                                     <table class="table table-striped table-bordered first etuk-table">
                                         <thead>
                                             <tr>
-                                                <th>Apartment</th>
+                                                <th>Product</th>
                                                 <th>Rating</th>
                                                 <th>Comment</th>
                                                 <th>Date Added</th>
@@ -53,13 +53,13 @@ $subtitle = "View all user reviews";
 										   {
 											  foreach($reviews as $r)
 											   {
-												   $a = $r['apartment'];
+												   $a = $r['product'];
 						     			        $statusClass = "danger";
 												$arrClass = "success";
 												$arrText = "Approve";
 ;
 											   $name = $a['name'];
-											   $uu = url('apartment')."?xf=".$a['apartment_id'];
+											   $uu = url('product')."?xf=".$a['sku'];
 											    $sss = $r['status'];
 												
 												if($sss == "approved")
@@ -68,11 +68,11 @@ $subtitle = "View all user reviews";
 													$arrClass = "warning";
 													$arrText = "Reject";
 												}
-											   $imgs = $a['cmedia']['images'];
+											   $imgs = $a['imggs'];
 
 												   $arr = url('arr')."?xf=".$r['id']."&type=".strtolower($arrText);
 												   $dr = url('dr')."?xf=".$r['id'];
-												   $ar = ($r['service'] + $r['location'] + $r['security'] + $r['cleanliness'] + $r['comfort']) / 5;
+												   $ar = $r['rating'];
 										  ?>
                                             <tr>
                                                <td>
@@ -85,15 +85,9 @@ $subtitle = "View all user reviews";
 												     <i class="fas fa-star"></i>
 											       @endfor
 												  </h3>
-												  <ul>
-												    <li>Service: <b>{{$r['service']}}</b></li>
-												    <li>Location: <b>{{$r['location']}}</b></li>
-												    <li>Security: <b>{{$r['security']}}</b></li>
-												    <li>Cleanliness: <b>{{$r['cleanliness']}}</b></li>
-												    <li>Comfort: <b>{{$r['comfort']}}</b></li>
-												  </ul>							  
+												  
 												</td>
-                                                <td><em>{{$r['comment']}}</em></td>
+                                                <td><em>{{$r['review']}}</em></td>
                                                 <td>{{$r['date']}}</td>
                                                 <td><span class="label label-{{$statusClass}}">{{strtoupper($r['status'])}}</td>
                                                 <td>

@@ -590,7 +590,7 @@ class MainController extends Controller {
 				{
 				$v = "reviews";
 				$req = $request->all();
-                $reviews = $this->helpers->getAllReviews();
+                $reviews = $this->helpers->getReviews();
 				#dd($reviews);
                 array_push($cpt,'reviews');
                 }
@@ -650,7 +650,7 @@ class MainController extends Controller {
 				    {   
 					  $dt = ['id' => $req['xf'],'status' => ""];
 					  $dt['status'] = $req['type'] == "approve" ? "approved" : "rejected";
-					  $ret = $this->helpers->updateReviewStatus($dt);
+					  $ret = $this->helpers->updateReview($dt);
 					  
 					  $ss = "update-review-status";
 					  if($ret == "error") $ss .= "-error";
@@ -2548,10 +2548,9 @@ class MainController extends Controller {
 						return redirect()->intended('products');
 					}
 					else
-					{
-						 $manufacturers = $this->helpers->getManufacturers();
+					{					 
 				         $categories = $this->helpers->getCategories();
-				         array_push($cpt,'manufacturers');
+				         array_push($cpt,'reviews');
 				         array_push($cpt,'categories');
 						 array_push($cpt,'p');                                 
 					}

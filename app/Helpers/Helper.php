@@ -1861,11 +1861,12 @@ $subject = $data['subject'];
 					  $temp = [];
 					  $temp['id'] = $r->id;
 					  $temp['user_id'] = $r->user_id;
-					  $temp['sku'] = $r->sku;
+					 $temp['product'] = $this->getProduct($r->sku);
 					  $temp['rating'] = $r->rating;
 					  $temp['name'] = $r->name;
 					  $temp['review'] = $r->review;
 					  $temp['status'] = $r->status;
+					  $temp['date'] = $r->created_at->format("jS F, Y"); 
 					  array_push($ret,$temp);
 				  }
                }                         
@@ -1884,11 +1885,12 @@ $subject = $data['subject'];
 					  $temp = [];
 					  $temp['id'] = $r->id;
 					  $temp['user_id'] = $r->user_id;
-					  $temp['sku'] = $r->sku;
+					  $temp['product'] = $this->getProduct($r->sku);
 					  $temp['rating'] = $r->rating;
 					  $temp['name'] = $r->name;
 					  $temp['review'] = $r->review;
 					  $temp['status'] = $r->status;
+					  $temp['date'] = $r->created_at->format("jS F, Y"); 
 					  $ret = $temp;
                }                         
                                   
@@ -1897,14 +1899,13 @@ $subject = $data['subject'];
 		   
 		    function updateReview($data)
            {
-			  $r = Reviews::where('id',$data['xf'])->first();
+			  $r = Reviews::where('id',$data['id'])->first();
 			   #dd($data);
 			 
 			if($r != null)
 			{
-				$r->update(['name' => $data['name'],                                                                                                                                                               
-                                                      'status' => $data['status']
-				
+				$r->update([
+				  'status' => $data['status']
 				]);
 			}
 
