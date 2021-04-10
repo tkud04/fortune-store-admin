@@ -828,6 +828,7 @@ $subject = $data['subject'];
 				$ret['meta_description'] = isset($data['meta_description']) && $data['meta_description'] != null ? $data['meta_description'] : "";
 				$ret['meta_keywords'] = isset($data['meta_keywords']) && $data['meta_keywords'] != null ? $data['meta_keywords'] : "";
 				$ret['model'] = isset($data['model']) && $data['model'] != null ? $data['model'] : "";
+				$ret['tag'] = isset($data['tag']) && $data['tag'] != null ? $data['tag'] : "";
 				//$ret['sku'] = isset($data['sku']) && $data['sku'] != null ? $data['sku'] : "";
 				$ret['sku'] = $this->generateSKU(5);
 				$ret['upc'] = isset($data['upc']) && $data['upc'] != null ? $data['upc'] : "";
@@ -853,6 +854,7 @@ $subject = $data['subject'];
            	$rett = Products::create(['name' => $ret['name'],                                                                                                          
                                                       'sku' => $ret['sku'], 
                                                       'model' => $ret['model'], 
+                                                      'tag' => $ret['tag'], 
                                                       'upc' => $ret['upc'], 
                                                       'ean' => $ret['ean'], 
                                                       'jan' => $ret['jan'], 
@@ -978,6 +980,7 @@ $subject = $data['subject'];
 				  $temp['name'] = $product->name;
 				  $temp['sku'] = $product->sku;
 				  $temp['model'] = $product->model;
+				  $temp['tag'] = $product->tag;
 				  $temp['upc'] = $product->upc;
 				  $temp['ean'] = $product->ean;
 				  $temp['jan'] = $product->jan;
@@ -1066,7 +1069,7 @@ $subject = $data['subject'];
 				$ret['name'] = isset($data['name']) && $data['name'] != null ? $data['name'] : "";
 				$ret['amount'] = isset($data['price']) && $data['price'] != null ? $data['price'] : "0";
 				$ret['description'] = isset($data['description']) && $data['description'] != null ? $data['description'] : "";
-				$ret['special'] = isset($data['special']) && $data['special'] != null ? $data['special'] : "";
+				$ret['tag'] = isset($data['special']) && $data['special'] != null ? $data['special'] : "";
 				$ret['meta_title'] = isset($data['meta_title']) && $data['meta_title'] != null ? $data['meta_title'] : "";
 				$ret['meta_description'] = isset($data['meta_description']) && $data['meta_description'] != null ? $data['meta_description'] : "";
 				$ret['meta_keywords'] = isset($data['meta_keywords']) && $data['meta_keywords'] != null ? $data['meta_keywords'] : "";
@@ -1094,6 +1097,7 @@ $subject = $data['subject'];
 				$p->update(['name' => $ret['name'],                                                                                                          
                                                       'sku' => $ret['sku'], 
                                                       'model' => $ret['model'], 
+                                                      'tag' => $ret['tag'], 
                                                       'upc' => $ret['upc'], 
                                                       'ean' => $ret['ean'], 
                                                       'jan' => $ret['jan'], 
@@ -1109,7 +1113,7 @@ $subject = $data['subject'];
 				         'product_id' => $p->id,
 				         'amount' => $ret['amount'],
 				         'description' => $ret['description'],
-				         'special' => $ret['special'],
+				         //'special' => $ret['special'],
 				         'meta_title' => $ret['meta_title'],
 				         'meta_description' => $ret['meta_description'],
 				         'meta_keywords' => $ret['meta_keywords'],
