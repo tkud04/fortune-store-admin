@@ -1993,7 +1993,7 @@ $subject = $data['subject'];
                 return "ok";
            }
 		   
-		   function deleteBanner($xf)
+		   function removeBanner($xf)
            {
            	$ret = [];
               $b = Banners::where('id',$xf)->first();
