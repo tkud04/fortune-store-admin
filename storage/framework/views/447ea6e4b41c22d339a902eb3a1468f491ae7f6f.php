@@ -99,7 +99,7 @@ $subtitle = "View all products";
 											     <a href="<?php echo e($uu); ?>"><h4><?php echo e(ucwords($name)); ?></h4></a><br>
 												  <h5><?php echo $special; ?></h5>
 											   </td> 
-                                                <td>&#163;<?php echo e(number_format($pd['amount'],2)); ?></td>
+                                                <td>&#8358;<?php echo e(number_format($pd['amount'],2)); ?></td>
 												<td><?php echo e($p['qty']); ?></td>
                                                 <td><span class="label label-<?php echo e($statusClass); ?>"><?php echo e(strtoupper($sss)); ?></span></td>
                                                 <td>

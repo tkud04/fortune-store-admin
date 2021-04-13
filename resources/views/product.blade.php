@@ -18,7 +18,8 @@ $subtitle = "Edit information about a product";
 $pd = $p['data'];
 $imgs = $p['imggs'];
 $category = $pd['category'];
-$manufacturer = $pd['manufacturer'];
+#$manufacturer = $pd['manufacturer'];
+$manufacturers = [];
 $da = $pd['da'];
 ?>
 <script>

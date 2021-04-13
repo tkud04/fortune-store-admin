@@ -99,7 +99,7 @@ $subtitle = "View all products";
 											     <a href="{{$uu}}"><h4>{{ucwords($name)}}</h4></a><br>
 												  <h5>{!! $special !!}</h5>
 											   </td> 
-                                                <td>&#163;{{number_format($pd['amount'],2)}}</td>
+                                                <td>&#8358;{{number_format($pd['amount'],2)}}</td>
 												<td>{{$p['qty']}}</td>
                                                 <td><span class="label label-{{$statusClass}}">{{strtoupper($sss)}}</span></td>
                                                 <td>
