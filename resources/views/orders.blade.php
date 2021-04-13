@@ -70,7 +70,7 @@ $subtitle = "View all orders";
                                                <td><a href="{{$uu}}"><h4>{{$o['reference']}}</a></td> 
 											   <td>{{ucwords($customer['fname']." ".$customer['lname'])}}</td> 
 												<td>{{strtoupper($o['status'])}}</h4></td>	
-                                                <td>&#163;{{number_format($totals['subtotal'],2)}}</td>
+                                                <td>&#8358;{{number_format($totals['subtotal'] + $totals['delivery'],2)}}</td>
 												<td>{{$o['date']}}</td>
 												<td>{{$o['updated']}}</td>
                                                 <td>

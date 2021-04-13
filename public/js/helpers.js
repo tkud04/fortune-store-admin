@@ -823,8 +823,8 @@ const refreshProducts = dt => {
 		          <td>${p.name}</td>
 		          <td>${p.model}</td>
 		          <td>${op.q}</td>
-		          <td>&#0163;${p.amount}</td>
-		          <td>&#0163;${ss}</td>
+		          <td>&#8358;${p.amount}</td>
+		          <td>&#8358;${ss}</td>
 		          <td><a href="javascript:void(0)" onclick="removeProduct({p: ${op.p},q: ${op.q},t: '${dt.t}'})" class="btn btn-danger"><i class="fas fa-minus"></i></a></td>
 				 </tr>`;
 		}
@@ -833,8 +833,8 @@ const refreshProducts = dt => {
 		          <td>${p.name}</td>
 		          <td>${p.model}</td>
 		          <td>${op.q}</td>
-		          <td>&#0163;${p.amount}</td>
-		          <td>&#0163;${ss}</td>
+		          <td>&#8358;${p.amount}</td>
+		          <td>&#8358;${ss}</td>
 		          </tr>`;
 		}
 		 html += hh;
@@ -843,11 +843,11 @@ const refreshProducts = dt => {
 	if(dt.type == "review"){
 		hh = `<tr>
 		          <td colspan="4" class="text-right">Subtotal</td>
-		          <td>&#0163;${s}</td>
+		          <td>&#8358;${s}</td>
 		          </tr>
 				  <tr>
 		          <td colspan="4" class="text-right">Total</td>
-		          <td>&#0163;<span id="${dt.t}-total">${t}</span></td>
+		          <td>&#8358;<span id="${dt.t}-total">${t}</span></td>
 		          </tr>`;
 		html += hh;
 	}

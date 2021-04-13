@@ -5951,10 +5951,12 @@ class MainController extends Controller {
 					    $products = $this->helpers->getProducts();
 					    $countries = $this->helpers->countries;
 					    $statuses = $this->helpers->statuses;
+						$shipping = $this->helpers->getShippingSingle($o['shipping_type']);
 					    array_push($cpt,'customers');
 				        array_push($cpt,'products');
 					    array_push($cpt,'countries');                                 
 					    array_push($cpt,'statuses');                                 
+					    array_push($cpt,'shipping');                                 
 					}
 					
 				}

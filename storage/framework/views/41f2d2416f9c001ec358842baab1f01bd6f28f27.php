@@ -3,19 +3,19 @@ $title = "Order #".$o['reference'];
 $subtitle = "View information on this order.";
 ?>
 
-@extends('layout')
-
-@section('title',$title)
 
 
-@section('page-header')
-@include('page-header',['title' => $title,'subtitle' => $subtitle])
-@stop
+<?php $__env->startSection('title',$title); ?>
 
 
-@section('content')
+<?php $__env->startSection('page-header'); ?>
+<?php echo $__env->make('page-header',['title' => $title,'subtitle' => $subtitle], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('content'); ?>
 <script>
-let xf = "{{$o['id']}}", products = [], pCover = "none", tkOrderHistory = "{{csrf_token()}}",
+let xf = "<?php echo e($o['id']); ?>", products = [], pCover = "none", tkOrderHistory = "<?php echo e(csrf_token()); ?>",
     orderProducts = [], eoPaymentXF = "new", eoShippingXF = "new";
 
   
@@ -23,19 +23,19 @@ let xf = "{{$o['id']}}", products = [], pCover = "none", tkOrderHistory = "{{csr
 $(document).ready(() => {
 	hideElem(["#eo-loading"]);
 	
-	 @foreach($products as $p)
+	 <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 	  products.push({
-		  id: "{{$p['id']}}", 
-		  name: "{{$p['name']}}", 
-		  model: "{{$p['model']}}", 
-		  qty: "{{$p['qty']}}", 
-		  amount: "{{$p['data']['amount']}}"
+		  id: "<?php echo e($p['id']); ?>", 
+		  name: "<?php echo e($p['name']); ?>", 
+		  model: "<?php echo e($p['model']); ?>", 
+		  qty: "<?php echo e($p['qty']); ?>", 
+		  amount: "<?php echo e($p['data']['amount']); ?>"
 		  });
- @endforeach
+ <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
  
- @foreach($o['items'] as $i)
-	  orderProducts.push({p: {{$i['product_id']}}, q: {{$i['qty']}}});
-	  @endforeach
+ <?php $__currentLoopData = $o['items']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+	  orderProducts.push({p: <?php echo e($i['product_id']); ?>, q: <?php echo e($i['qty']); ?>});
+	  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 	  
 	  refreshProducts({type: "normal", target: "#order-products", t: 'order'});
 		   refreshProducts({type: "review", target: "#order-products-review", t: 'order'});
@@ -60,10 +60,10 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
 	    <div class="text-right" id="ap-submit">
-	      <a href="{{$pu}}" target="_blank" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print Invoice"><i class="fas fa-print"></i></a>
-	      <a href="{{$su}}" target="_blank" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print Shipping List"><i class="fas fa-truck"></i></a>
-	      <a href="{{$eu}}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fas fa-edit"></i></a>
-	      <a href="{{url('orders')}}" class="btn btn-primary"><i class="fas fa-reply"></i></a>
+	      <a href="<?php echo e($pu); ?>" target="_blank" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print Invoice"><i class="fas fa-print"></i></a>
+	      <a href="<?php echo e($su); ?>" target="_blank" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print Shipping List"><i class="fas fa-truck"></i></a>
+	      <a href="<?php echo e($eu); ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fas fa-edit"></i></a>
+	      <a href="<?php echo e(url('orders')); ?>" class="btn btn-primary"><i class="fas fa-reply"></i></a>
 	    </div>
 	  </div>
       
@@ -76,15 +76,18 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 		   
                 <li class="list-group-item">
 				  <span class="badge badge-primary p-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Date added"><i class="fas fa-calendar"></i> </span>
-				  {{$o['date']}}
+				  <?php echo e($o['date']); ?>
+
 				</li>
 				<li class="list-group-item">
 				  <span class="badge badge-primary p-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Payment method"><i class="fas fa-credit-card"></i> </span>
-				  {{$payment_method}}
+				  <?php echo e($payment_method); ?>
+
 				</li>
 				<li class="list-group-item">
 				  <span class="badge badge-primary p-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Shipping method"><i class="fas fa-truck"></i> </span>
-				  {!! $shipping_method !!}
+				  <?php echo $shipping_method; ?>
+
 				</li>
            </ul>
         </div>
@@ -98,15 +101,18 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 		   
                 <li class="list-group-item">
 				  <span class="badge badge-primary p-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customer name"><i class="fas fa-user"></i> </span>
-				  {{ucwords($cname)}}
+				  <?php echo e(ucwords($cname)); ?>
+
 				</li>
 				<li class="list-group-item">
 				  <span class="badge badge-primary p-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customer email"><i class="fas fa-envelope"></i> </span>
-				  {{ucwords($customer['email'])}}
+				  <?php echo e(ucwords($customer['email'])); ?>
+
 				</li>
 				<li class="list-group-item">
 				  <span class="badge badge-primary p-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customer phone number"><i class="fas fa-phone"></i> </span>
-				  {{ucwords($customer['phone'])}}
+				  <?php echo e(ucwords($customer['phone'])); ?>
+
 				</li>
            </ul>
         </div>
@@ -114,7 +120,7 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 	  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12  col-6 mb-3">
 	    <div class="card">
            <div class="card-body">
-                <h3 class="card-title"><i class="fas fa-user"></i> Order #{{$o['reference']}}</h3>
+                <h3 class="card-title"><i class="fas fa-user"></i> Order #<?php echo e($o['reference']); ?></h3>
 				<div class="table-responsive mb-5">
 				  <table class="table table-striped table-bordered first etuk-table">
                                               <thead>
@@ -128,12 +134,12 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 											  ?>
 											   <tr>
 												  <td>
-											      {{strtoupper($cname)}}<br>
-											      {{strtoupper($sd['address_1'])}}<br>
-											      @if($sd['address_2'] != ""){{strtoupper($sd['address_2'])}}<br>@endif
-											      {{strtoupper($sd['city'])." ".$sd['zip']}}<br>
-											      {{strtoupper($sd['region'])}}<br>
-											      {{ucwords($countries[$sd['country']])}}<br>
+											      <?php echo e(strtoupper($cname)); ?><br>
+											      <?php echo e(strtoupper($sd['address_1'])); ?><br>
+											      <?php if($sd['address_2'] != ""): ?><?php echo e(strtoupper($sd['address_2'])); ?><br><?php endif; ?>
+											      <?php echo e(strtoupper($sd['city'])." ".$sd['zip']); ?><br>
+											      <?php echo e(strtoupper($sd['region'])); ?><br>
+											      <?php echo e(ucwords($countries[$sd['country']])); ?><br>
 											      </td>											  
 											   </tr>
 											  <?php
@@ -184,9 +190,10 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
                                     <div class="tab-pane active show" id="history" role="tabpanel" aria-labelledby="history-tab">
                                       <h5 class="card-header">History</h5>
                                        <div class="card-body">
-									   <form method="post" action="{{url('add-order-history')}}" id="order-history-form">
-										   {!! csrf_field() !!}
-										   <input type="hidden" id="order-history-xf" name="xf" value="{{$o['id']}}">
+									   <form method="post" action="<?php echo e(url('add-order-history')); ?>" id="order-history-form">
+										   <?php echo csrf_field(); ?>
+
+										   <input type="hidden" id="order-history-xf" name="xf" value="<?php echo e($o['id']); ?>">
 									    <div class="row">
 										  <div class="col-md-12">
 											<div class="mt-5">
@@ -206,10 +213,10 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 													$ts = $statuses[$t['status']];
 											  ?>
 											   <tr>
-											     <td>{{$t['date']}}</td>
-											     <td>{{$t['comment']}}</td>
-											     <td>{{strtoupper($ts)}}</td>
-											     <td>{{$t['notify_customer']}}</td>
+											     <td><?php echo e($t['date']); ?></td>
+											     <td><?php echo e($t['comment']); ?></td>
+											     <td><?php echo e(strtoupper($ts)); ?></td>
+											     <td><?php echo e($t['notify_customer']); ?></td>
 											   </tr>
 											  <?php
 												}
@@ -227,7 +234,7 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 												        foreach($statuses as $k => $v)
 												        {
 												      ?>
-											          <option value="{{$k}}">{{ucwords($v)}}</option>
+											          <option value="<?php echo e($k); ?>"><?php echo e(ucwords($v)); ?></option>
 												      <?php
 												        }
 												       ?>
@@ -271,39 +278,39 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 										    <div class="col-md-6">
 										      <div class="form-group">
                                                 <label>First Name <span class="req">*</span></label>
-                                                <input id="order-payment-fname" type="text" value="{{$sd['fname']}}" placeholder="First name" class="form-control">
+                                                <input id="order-payment-fname" type="text" value="<?php echo e($sd['fname']); ?>" placeholder="First name" class="form-control">
                                               </div>
                                             </div>
 											<div class="col-md-6">
 											  <div class="form-group mt-2">
                                                  <label>Last Name <span class="req">*</span></label>
-                                                 <input id="order-payment-lname" type="text" value="{{$sd['lname']}}" placeholder="Last name" class="form-control">
+                                                 <input id="order-payment-lname" type="text" value="<?php echo e($sd['lname']); ?>" placeholder="Last name" class="form-control">
                                               </div>
 											</div>
 										   </div>
 											<div class="form-group mt-2">
                                               <label>Company </label>
-                                               <input id="order-payment-company" type="text" value="{{$sd['company']}}" placeholder="Company" class="form-control">
+                                               <input id="order-payment-company" type="text" value="<?php echo e($sd['company']); ?>" placeholder="Company" class="form-control">
                                             </div>
 											<div class="form-group mt-2">
                                                 <label>Address 1 <span class="req">*</span></label>
-                                               <input id="order-payment-address-1" type="text" value="{{$sd['address_1']}}" placeholder="Address line 1" class="form-control">
+                                               <input id="order-payment-address-1" type="text" value="<?php echo e($sd['address_1']); ?>" placeholder="Address line 1" class="form-control">
                                             </div>
 											<div class="form-group mt-2">
                                                 <label>Address 2</label>
-                                               <input id="order-payment-address-2" type="text" value="{{$sd['address_2']}}" placeholder="Address line 2" class="form-control">
+                                               <input id="order-payment-address-2" type="text" value="<?php echo e($sd['address_2']); ?>" placeholder="Address line 2" class="form-control">
                                             </div>
 											<div class="form-group mt-2">
                                                 <label>City <span class="req">*</span></label>
-                                               <input id="order-payment-city" type="text" value="{{$sd['city']}}" placeholder="City" class="form-control">
+                                               <input id="order-payment-city" type="text" value="<?php echo e($sd['city']); ?>" placeholder="City" class="form-control">
                                             </div>
 											<div class="form-group mt-2">
                                                 <label>Region/State <span class="req">*</span></label>
-                                               <input id="order-payment-region" type="text" value="{{$sd['region']}}" placeholder="Region or state" class="form-control">
+                                               <input id="order-payment-region" type="text" value="<?php echo e($sd['region']); ?>" placeholder="Region or state" class="form-control">
                                             </div>
 											<div class="form-group mt-2">
                                                 <label>Postcode</label>
-                                               <input id="order-payment-postcode" type="text" value="{{$sd['zip']}}" placeholder="Postcode" class="form-control">
+                                               <input id="order-payment-postcode" type="text" value="<?php echo e($sd['zip']); ?>" placeholder="Postcode" class="form-control">
                                             </div>
 											
 											<div class="form-group mt-2">
@@ -315,7 +322,7 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 												  {
 													  $ss = $k == $sd['country'] ? " selected='selected'" : "";
 												  ?>
-											     <option value="{{$k}}"{{$ss}}>{{ucwords($v)}}</option>
+											     <option value="<?php echo e($k); ?>"<?php echo e($ss); ?>><?php echo e(ucwords($v)); ?></option>
 												 <?php
 												  }
 												 ?>
@@ -331,4 +338,5 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
                                 </div>
                             </div>
       </div>
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\bkupp\lokl\repo\fortune-store-admin\resources\views/order.blade.php ENDPATH**/ ?>
