@@ -821,7 +821,7 @@ const refreshProducts = dt => {
         if(dt.type == "normal"){
 			hh = `<tr>
 		          <td>${p.name}</td>
-		          <td>${p.model}</td>
+		          <td>${p.sku}</td>
 		          <td>${op.q}</td>
 		          <td>&#8358;${p.amount}</td>
 		          <td>&#8358;${ss}</td>
@@ -831,7 +831,7 @@ const refreshProducts = dt => {
 		else if(dt.type == "review"){
 			hh = `<tr>
 		          <td>${p.name}</td>
-		          <td>${p.model}</td>
+		          <td>${p.sku}</td>
 		          <td>${op.q}</td>
 		          <td>&#8358;${p.amount}</td>
 		          <td>&#8358;${ss}</td>
@@ -843,11 +843,15 @@ const refreshProducts = dt => {
 	if(dt.type == "review"){
 		hh = `<tr>
 		          <td colspan="4" class="text-right">Subtotal</td>
-		          <td>&#8358;${s}</td>
+		          <td><span class="ml-5">&#8358;${s}</span></td>
+		          </tr>
+				  <tr>
+		          <td colspan="4" class="text-right">Shipping</td>
+		          <td><span class="ml-5">&#8358;${shipping.value}</span></td>
 		          </tr>
 				  <tr>
 		          <td colspan="4" class="text-right">Total</td>
-		          <td>&#8358;<span id="${dt.t}-total">${t}</span></td>
+		          <td><span class="ml-5">&#8358;<span id="${dt.t}-total">${parseInt(t) + parseInt(shipping.value)}</span></span></td>
 		          </tr>`;
 		html += hh;
 	}

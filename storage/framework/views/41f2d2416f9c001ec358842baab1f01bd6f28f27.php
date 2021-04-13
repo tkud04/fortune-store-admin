@@ -16,7 +16,12 @@ $subtitle = "View information on this order.";
 <?php $__env->startSection('content'); ?>
 <script>
 let xf = "<?php echo e($o['id']); ?>", products = [], pCover = "none", tkOrderHistory = "<?php echo e(csrf_token()); ?>",
-    orderProducts = [], eoPaymentXF = "new", eoShippingXF = "new";
+    orderProducts = [], eoPaymentXF = "new", eoShippingXF = "new",
+	shipping = {
+		id: "<?php echo e($shipping['id']); ?>",
+		name: "<?php echo e($shipping['name']); ?>",
+		value: "<?php echo e($shipping['value']); ?>",
+	};
 
   
 

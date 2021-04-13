@@ -16,7 +16,12 @@ $subtitle = "View information on this order.";
 @section('content')
 <script>
 let xf = "{{$o['id']}}", products = [], pCover = "none", tkOrderHistory = "{{csrf_token()}}",
-    orderProducts = [], eoPaymentXF = "new", eoShippingXF = "new";
+    orderProducts = [], eoPaymentXF = "new", eoShippingXF = "new",
+	shipping = {
+		id: "{{$shipping['id']}}",
+		name: "{{$shipping['name']}}",
+		value: "{{$shipping['value']}}",
+	};
 
   
 
