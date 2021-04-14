@@ -214,7 +214,7 @@ console.log(trmData);
                                                <td><a href="<?php echo e($uu); ?>"><h4><?php echo e($o['reference']); ?></a></td> 
 											   <td><?php echo e(ucwords($customer['fname']." ".$customer['lname'])); ?></td> 
 												<td><?php echo e(strtoupper($o['status'])); ?></h4></td>	
-                                                <td>&#163;<?php echo e(number_format($totals['subtotal'],2)); ?></td>
+                                                <td>&#8358;<?php echo e(number_format($totals['subtotal'],2)); ?></td>
 												<td><?php echo e($o['date']); ?></td>
 												<td><?php echo e($o['updated']); ?></td>
                                                 <td>

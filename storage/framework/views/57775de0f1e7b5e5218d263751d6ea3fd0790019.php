@@ -3,35 +3,35 @@ $title = "Invoice";
 $blank = true;
 ?>
 
-@extends('layout')
-
-@section('title',$title)
 
 
-@section('content')
+<?php $__env->startSection('title',$title); ?>
+
+
+<?php $__env->startSection('content'); ?>
 <script>
 let orderProducts = [], products = [],
 	shipping = {
-		id: "{{$shipping['id']}}",
-		name: "{{$shipping['name']}}",
-		value: "{{$shipping['value']}}",
+		id: "<?php echo e($shipping['id']); ?>",
+		name: "<?php echo e($shipping['name']); ?>",
+		value: "<?php echo e($shipping['value']); ?>",
 	};
 
-	 @foreach($products as $p)
+	 <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 	  products.push({
-		  id: "{{$p['id']}}", 
-		  name: "{{$p['name']}}", 
-		  model: "{{$p['model']}}", 
-		  qty: "{{$p['qty']}}", 
-		  amount: "{{$p['data']['amount']}}"
+		  id: "<?php echo e($p['id']); ?>", 
+		  name: "<?php echo e($p['name']); ?>", 
+		  model: "<?php echo e($p['model']); ?>", 
+		  qty: "<?php echo e($p['qty']); ?>", 
+		  amount: "<?php echo e($p['data']['amount']); ?>"
 		  });
- @endforeach
+ <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 $(document).ready(() => {
  
- @foreach($o['items'] as $i)
-	  orderProducts.push({p: {{$i['product_id']}}, q: {{$i['qty']}}});
-	  @endforeach
+ <?php $__currentLoopData = $o['items']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+	  orderProducts.push({p: <?php echo e($i['product_id']); ?>, q: <?php echo e($i['qty']); ?>});
+	  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 	  
 	 refreshProducts({type: "review", target: "#order-products-2", t: 'order'});
 });
@@ -51,8 +51,8 @@ $shipping_method = $shipping['name']." - &#8358;".number_format($shipping['value
                                 <div class="card-header p-4">
                                      <a class="pt-2 d-inline-block" href="javascript:void(0)">Invoice</a>
                                    
-                                    <div class="float-right"> <h3 class="mb-0">Order #{{$o['reference']}}</h3>
-                                    Date: {{$o['date']}}</div>
+                                    <div class="float-right"> <h3 class="mb-0">Order #<?php echo e($o['reference']); ?></h3>
+                                    Date: <?php echo e($o['date']); ?></div>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive-sm mb-5">
@@ -73,10 +73,10 @@ $shipping_method = $shipping['name']." - &#8358;".number_format($shipping['value
                                                       <div>Website: <a href="javascript:void(0)">http://luxfabriqs.com</a></div>
 													</td>
 													<td class="center">                                       
-                                                      <div><span class="text-dark mr-5">Date added</span> {{$o['date']}}</div>
-                                                      <div><span class="text-dark mr-5">Order ID</span> {{$o['reference']}}</div>
-                                                      <div><span class="text-dark mr-5">Payment method</span> {{$payment_method}}</div>
-                                                      <div><span class="text-dark mr-5">Shipping method</span>  {!! $shipping_method !!}</div>
+                                                      <div><span class="text-dark mr-5">Date added</span> <?php echo e($o['date']); ?></div>
+                                                      <div><span class="text-dark mr-5">Order ID</span> <?php echo e($o['reference']); ?></div>
+                                                      <div><span class="text-dark mr-5">Payment method</span> <?php echo e($payment_method); ?></div>
+                                                      <div><span class="text-dark mr-5">Shipping method</span>  <?php echo $shipping_method; ?></div>
 													</td>
                                                 </tr>
                                             </tbody>
@@ -94,12 +94,12 @@ $shipping_method = $shipping['name']." - &#8358;".number_format($shipping['value
                                                 <tr>
                                                     
 													<td>
-													  <div>{{strtoupper($sd['fname']." ".$sd['lname'])}}</div>
-													  <div>{{strtoupper($sd['address_1'])}}</div>
-													  @if($sd['address_2'] != "") <div>{{strtoupper($sd['address_2'])}}</div>@endif
-													  <div>{{strtoupper($sd['city']." ".$sd['zip'])}}</div>
-													  <div>{{ucwords($sd['region'])}}</div>
-													  <div>{{ucwords($countries[$sd['country']])}}</div>
+													  <div><?php echo e(strtoupper($sd['fname']." ".$sd['lname'])); ?></div>
+													  <div><?php echo e(strtoupper($sd['address_1'])); ?></div>
+													  <?php if($sd['address_2'] != ""): ?> <div><?php echo e(strtoupper($sd['address_2'])); ?></div><?php endif; ?>
+													  <div><?php echo e(strtoupper($sd['city']." ".$sd['zip'])); ?></div>
+													  <div><?php echo e(ucwords($sd['region'])); ?></div>
+													  <div><?php echo e(ucwords($countries[$sd['country']])); ?></div>
 													</td>
                                                 </tr>
                                             </tbody>
@@ -131,4 +131,5 @@ $shipping_method = $shipping['name']." - &#8358;".number_format($shipping['value
                             </div>
                         </div>
                     </div>
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\bkupp\lokl\repo\fortune-store-admin\resources\views/invoice.blade.php ENDPATH**/ ?>

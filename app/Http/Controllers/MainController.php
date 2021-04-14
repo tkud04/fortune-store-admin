@@ -6238,8 +6238,10 @@ class MainController extends Controller {
 						$countries = $this->helpers->countries;
 					    $statuses = $this->helpers->statuses;
 						$products = $this->helpers->getProducts();
+						$shipping = $this->helpers->getShippingSingle($o['shipping_type']);
 					    array_push($cpt,'products');                                 
 					    array_push($cpt,'countries');                                 
+					    array_push($cpt,'shipping');                                 
 					    array_push($cpt,'statuses');                                 
 					}
 					
