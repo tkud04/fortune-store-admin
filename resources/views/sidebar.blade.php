@@ -35,6 +35,7 @@
                                             <a class="nav-link" href="{{url('products')}}">Products</a>
                                             <a class="nav-link" href="{{url('information')}}">Information</a>
                                             <a class="nav-link" href="{{url('shipping')}}">Shipping</a>
+                                            <a class="nav-link" href="{{url('gallery')}}">Gallery</a>
                                         </li>
                                     </ul>
                                 </div>

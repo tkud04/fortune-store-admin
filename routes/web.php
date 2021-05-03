@@ -117,6 +117,13 @@ Route::post('add-banner', 'MainController@postAddBanner');
 Route::get('update-banner', 'MainController@getUpdateBanner');
 Route::get('remove-banner', 'MainController@getRemoveBanner');
 
+//Gallery
+Route::get('gallery', 'MainController@getGallery');
+Route::get('add-gallery', 'MainController@getAddGallery');
+Route::post('add-gallery', 'MainController@postAddGallery');
+Route::get('update-gallery', 'MainController@getUpdateGallery');
+Route::get('remove-gallery', 'MainController@getRemoveGallery');
+
 //Tickets
 Route::get('tickets', 'MainController@getTickets');
 Route::get('ticket', 'MainController@getTicket');

@@ -97,6 +97,9 @@ class Helper implements HelperContract
                      "add-information-status" => "Information added",
                      "update-information-status" => "Information updated",
                      "remove-information-status" => "Information removed",
+					 "add-gallery-status" => "Item added to gallery",
+                     "update-gallery-status" => "Item updated",
+                     "remove-gallery-status" => "Item removed from to gallery",
 					 //ERRORS
 					 "login-status-error" => "There was a problem signing in, please contact support.",
 					 "signup-status-error" => "There was a problem signing in, please contact support.",
@@ -133,6 +136,9 @@ class Helper implements HelperContract
 					 "add-shipping-status-error" => "There was a problem adding the shipping info, please try again.",
                      "update-shipping-status-error" => "There was a problem updating the shipping info, please try again.",
                      "remove-shipping-status-error" => "There was a problem removing the shipping info, please try again.",
+					 "add-gallery-status-error" => "There was a problem adding the item to gallery, please try again.",
+                     "update-gallery-status-error" => "There was a problem updating the item, please try again.",
+                     "remove-gallery-status-error" => "There was a problem removing the item, please try again.",
                    ],
 				   'errors' => []
 				   ];
@@ -3368,6 +3374,59 @@ function getRandomString($length_of_string)
 		   {
 			   return true;
 		   }
+		   
+		    function createGallery($data)
+           {
+			   #dd($data);
+			 $ret = null;
+			 
+			 
+				 $ret = Gallery::create(['img' => $data['img'], 
+                                                      'deleted' => $data['deleted'],
+                                                      'delete_token' => $data['delete_token'],
+                                                      'status' => "enabled",
+                                                      ]);
+			  return $ret;
+           }
+		   
+		   function getGallery()
+		   {
+			   $ret = [];
+			   $gi = Gallery::where('deleted',"no")->get();
+			   #dd($gi);
+			   if(!is_null($gi))
+			   {
+				foreach($gi as $b)
+				   {
+					   $temp = [];
+					   $temp['id'] = $b->id;
+					   $img = $b->img;
+					   $temp['img'] = $this->getCloudinaryImage($img);
+					   $temp['deleted'] = $b->deleted;				   
+					   $temp['delete_token'] = $b->delete_token;
+					   $temp['status'] = $b->status;
+					   $temp['date'] = $b->created_at->format("jS F, Y h:i A");
+					   array_push($ret,$temp);
+				   }
+			   }
+			   
+			   return $ret;
+		   }	 
+		   
+		    function removeGallery($xf,$user=null)
+           {
+			   #dd($data);
+			 $ret = "error";
+			 $s = Gallery::where('id',$xf)->first();
+
+			 
+			 if(!is_null($s))
+			 {
+				 $s->delete();
+			   $ret = "ok";
+			 }
+           
+           }
 		   
    
 }
