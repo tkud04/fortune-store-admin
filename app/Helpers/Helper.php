@@ -32,6 +32,7 @@ use App\Plugins;
 use App\Shipping;
 use App\Couriers;
 use App\Comparisons;
+use App\Gallery;
 use \Swift_Mailer;
 use \Swift_SmtpTransport;
 use \Cloudinary\Api;
