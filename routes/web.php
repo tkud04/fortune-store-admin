@@ -74,6 +74,12 @@ Route::post('add-information', 'MainController@postAddInformation');
 Route::post('edit-information', 'MainController@postEditInformation');
 Route::get('remove-information', 'MainController@getRemoveInformation');
 
+//Discounts
+Route::get('discounts', 'MainController@getDiscounts');
+Route::get('add-discount', 'MainController@getAddDiscount');
+Route::post('add-discount', 'MainController@postAddDiscount');
+Route::get('remove-discount', 'MainController@getRemoveDiscount');
+
 //Reviews
 Route::get('reviews', 'MainController@getReviews');
 Route::get('arr', 'MainController@getApproveRejectReview');

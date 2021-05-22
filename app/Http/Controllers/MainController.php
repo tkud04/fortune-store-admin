@@ -992,6 +992,205 @@ class MainController extends Controller {
 		}
     }
 	
+	/**
+	 * Show the Add discount view.
+	 *
+	 * @return Response
+	 */
+	public function getAddDiscount(Request $request)
+    {
+		$user = null;
+		$nope = false;
+		$v = "";
+		
+		$signals = $this->helpers->signals;
+		$plugins = $this->helpers->getPlugins();
+		$cpt = ['user','signals','plugins'];
+				
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			
+			if($this->helpers->isAdmin($user))
+			{
+				$hasPermission = $this->helpers->hasPermission($user->id,['view_plugins','edit_plugins']);
+				#dd($hasPermission);
+				$req = $request->all();
+				
+				if($hasPermission)
+				{
+					$v = "add-discount";
+				}
+				else
+				{
+					session()->flash("permissions-status-error","ok");
+					return redirect()->intended('/');
+				}
+								
+			}
+			else
+			{
+				Auth::logout();
+				$u = url('/');
+				return redirect()->intended($u);
+			}
+		}
+		else
+		{
+			$v = "login";
+		}
+		return view($v,compact($cpt));
+    }
+	
+	/**
+	 * Handle add discount.
+	 *
+	 * @return Response
+	 */
+	public function postAddDiscount(Request $request)
+    {
+		$user = null;
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			
+			if($this->helpers->isAdmin($user))
+			{
+				$hasPermission = $this->helpers->hasPermission($user->id,['view_banners','edit_banners']);
+				#dd($hasPermission);
+				$req = $request->all();
+				#$req['type'] = "landing";
+				
+				if($hasPermission)
+				{
+				
+				#dd($req);
+				
+				$validator = Validator::make($req,[
+		                     'img' => 'required',
+		                   ]);
+						
+				if($validator->fails())
+                {
+                  session()->flash("validation-status-error","ok");
+			      return redirect()->back()->withInput();
+                }
+				else
+				{
+					$ird = [];
+                    $networkError = false;
+				
+                    
+            		  $img = $req['img'];
+					  $imgg = $this->helpers->uploadCloudImage($img->getRealPath());
+						
+					  if(isset($imgg['status']) && $imgg['status'] == "error")
+					  {
+						  $networkError = true;
+					  }
+					  else
+					  {
+						 $req['img'] = $imgg['public_id'];
+					     $req['delete_token'] = $imgg['delete_token'];
+					     $req['deleted'] = "no";
+					  }
+					
+					if($networkError)
+					{
+						session()->flash("network-status-error","ok");
+			            return redirect()->back()->withInput();
+					}
+					else
+					{
+						$req['status'] = "enabled";
+					    $req['added_by'] = $user->id;
+					   
+			            $ret = $this->helpers->createGallery($req);
+			            $ss = "add-gallery-status";
+					    if($ret == "error") $ss .= "-error";
+					    session()->flash($ss,"ok");
+			            return redirect()->intended("gallery");
+					}
+					
+				}
+				}
+				else
+				{
+					session()->flash("permissions-status-error","ok");
+					return redirect()->intended("/");
+				}
+			}
+			else
+			{
+				Auth::logout();
+				$u = url('/');
+				return redirect()->intended($u);
+			}
+		}
+		else
+		{
+			return redirect()->intended('/');
+		}
+    }
+	
+	/**
+	 * Handle remove review.
+	 *
+	 * @return Response
+	 */
+	public function getRemoveDiscount(Request $request)
+    {
+		$user = null;
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			
+			if($this->helpers->isAdmin($user))
+			{
+				$req = $request->all();
+			   	    #dd($req);
+				$hasPermission = $this->helpers->hasPermission($user->id,['view_reviews','edit_reviews']);
+				#dd($hasPermission);
+				
+				if($hasPermission)
+				{
+				
+				    $validator = Validator::make($req,[
+		                    'xf' => 'required'
+		                   ]);
+						
+				    if($validator->fails())
+                    {
+                      session()->flash("validation-status-error","ok");
+			          return redirect()->back()->withInput();
+                    }
+				    else
+				    {   
+					  $ret = $this->helpers->removeGallery($req['xf']);
+					  $ss = "remove-gallery-status";
+					  if($ret == "error") $ss .= "-error";
+					  session()->flash($ss,"ok");
+			          return redirect()->intended("gallery");
+				    }
+				}
+				else
+				{
+					session()->flash("permissions-status-error","ok");
+			        return redirect()->intended("/");
+				}
+			}
+			else
+			{
+				Auth::logout();
+				$u = url('/');
+				return redirect()->intended($u);
+			}
+		}
+		else
+		{
+			return redirect()->intended('/');
+		}
+    }
 	
 	/**
 	 * Show list of plugins.
