@@ -42,7 +42,7 @@ $subtitle = "View all product discounts";
                                             <tr>
                                                  <th>Product</th>
                                                  <th>Discount type</th>
-                                                 <th>Amount</th>
+                                                 <th>Discount</th>
                                                  <th>Status</th>
                                                  <th></th>
                                             </tr>
@@ -67,7 +67,13 @@ $subtitle = "View all product discounts";
 											     {{$name}}
 												</td>
 					                            <td><b>{{ $dt[$d['discount_type']] }}</b></td>
-					                            <td><b>&#8358;{{ number_format($d['discount'],2) }}</b></td>
+					                            <td>
+												@if($d['discount_type'] == "flat")
+												<b>&#8358;{{ number_format($d['discount'],2) }}</b>
+												@elseif($d['discount_type'] == "percentage")
+												<b>%{{ $d['discount'] }}</b>
+												@endif
+												</td>
 					                            <td>				   
 					                             <h3 class="{{$ss}}">{{strtoupper($d['status'])}}</h3>
 					                            </td>
