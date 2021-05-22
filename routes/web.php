@@ -76,8 +76,8 @@ Route::get('remove-information', 'MainController@getRemoveInformation');
 
 //Discounts
 Route::get('discounts', 'MainController@getDiscounts');
-Route::get('add-discount', 'MainController@getAddDiscount');
-Route::post('add-discount', 'MainController@postAddDiscount');
+Route::get('new-discount', 'MainController@getAddDiscount');
+Route::post('new-discount', 'MainController@postAddDiscount');
 Route::get('remove-discount', 'MainController@getRemoveDiscount');
 
 //Reviews

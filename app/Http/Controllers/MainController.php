@@ -993,6 +993,61 @@ class MainController extends Controller {
     }
 	
 	/**
+	 * Show list of discounts.
+	 *
+	 * @return Response
+	 */
+	public function getDiscounts(Request $request)
+    {
+		$user = null;
+		$nope = false;
+		$v = "";
+		
+		$signals = $this->helpers->signals;
+		$plugins = $this->helpers->getPlugins();
+		#$this->helpers->populateTips();
+        $cpt = ['user','signals','plugins'];
+				
+		if(Auth::check())
+		{
+			
+			$user = Auth::user();
+			
+			if($this->helpers->isAdmin($user))
+			{
+				$hasPermission = $this->helpers->hasPermission($user->id,['view_reviews']);
+				#dd($hasPermission);
+				$req = $request->all();
+				
+				if($hasPermission)
+				{
+				$v = "discounts";
+				$req = $request->all();
+                $discounts = $this->helpers->getDiscounts();
+				#dd($reviews);
+                array_push($cpt,'discounts');
+                }
+				else
+				{
+					session()->flash("permissions-status-error","ok");
+					return redirect()->intended('/');
+				}				
+			}
+			else
+			{
+				Auth::logout();
+				$u = url('/');
+				return redirect()->intended($u);
+			}
+		}
+		else
+		{
+			$v = "login";
+		}
+		return view($v,compact($cpt));
+    }
+	
+	/**
 	 * Show the Add discount view.
 	 *
 	 * @return Response
@@ -1020,6 +1075,8 @@ class MainController extends Controller {
 				if($hasPermission)
 				{
 					$v = "add-discount";
+					$products = $this->helpers->getProducts();
+					array_push($cpt,'products');
 				}
 				else
 				{
@@ -1067,7 +1124,11 @@ class MainController extends Controller {
 				#dd($req);
 				
 				$validator = Validator::make($req,[
-		                     'img' => 'required',
+		                     'products' => 'required',
+		                     'discount_type' => 'required|not_in:none',
+		                     'type' => 'required|not_in:none',
+		                     'status' => 'required|not_in:none',
+		                     'amount' => 'required|numeric',
 		                   ]);
 						
 				if($validator->fails())
@@ -1077,40 +1138,17 @@ class MainController extends Controller {
                 }
 				else
 				{
-					$ird = [];
-                    $networkError = false;
-				
-                    
-            		  $img = $req['img'];
-					  $imgg = $this->helpers->uploadCloudImage($img->getRealPath());
-						
-					  if(isset($imgg['status']) && $imgg['status'] == "error")
-					  {
-						  $networkError = true;
-					  }
-					  else
-					  {
-						 $req['img'] = $imgg['public_id'];
-					     $req['delete_token'] = $imgg['delete_token'];
-					     $req['deleted'] = "no";
-					  }
-					
-					if($networkError)
+					$products = json_decode($req['products']);
+					foreach($products as $p)
 					{
-						session()->flash("network-status-error","ok");
-			            return redirect()->back()->withInput();
+						$req['sku'] = $p;
+						$ret = $this->helpers->createDiscount($req);
 					}
-					else
-					{
-						$req['status'] = "enabled";
-					    $req['added_by'] = $user->id;
-					   
-			            $ret = $this->helpers->createGallery($req);
-			            $ss = "add-gallery-status";
+                      
+			            $ss = "create-discount-status";
 					    if($ret == "error") $ss .= "-error";
 					    session()->flash($ss,"ok");
-			            return redirect()->intended("gallery");
-					}
+			            return redirect()->intended("discounts");
 					
 				}
 				}
@@ -1134,7 +1172,7 @@ class MainController extends Controller {
     }
 	
 	/**
-	 * Handle remove review.
+	 * Handle remove discount.
 	 *
 	 * @return Response
 	 */
@@ -1166,11 +1204,11 @@ class MainController extends Controller {
                     }
 				    else
 				    {   
-					  $ret = $this->helpers->removeGallery($req['xf']);
-					  $ss = "remove-gallery-status";
+					  $ret = $this->helpers->removeDiscount($req['xf']);
+					  $ss = "delete-discount-status";
 					  if($ret == "error") $ss .= "-error";
 					  session()->flash($ss,"ok");
-			          return redirect()->intended("gallery");
+			          return redirect()->intended("discounts");
 				    }
 				}
 				else

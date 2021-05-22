@@ -1201,11 +1201,11 @@ $subject = $data['subject'];
 		   
 		   function createDiscount($data)
            {
-			   $sku = ($data['type'] == "single") ? $data['type'] : "";
+			   $sku = ($data['type'] == "single") ? $data['sku'] : "";
 			   
            	$ret = Discounts::create(['sku' => $data['sku'],                                                                                                          
                                                       'discount_type' => $data['discount_type'], 
-                                                      'discount' => $data['discount'], 
+                                                      'discount' => $data['amount'], 
                                                       'type' => $data['type'], 
                                                       'status' => $data['status'], 
                                                       ]);
@@ -1213,7 +1213,7 @@ $subject = $data['subject'];
                 return $ret;
            }
 		   
-		   function getDiscounts($id,$type="product")
+		   function getDiscounts($id="all",$type="product")
            {
            	$ret = [];
 			
@@ -1245,6 +1245,7 @@ $subject = $data['subject'];
 					$temp = [];
 				    $temp['id'] = $d->id;
 				    $temp['sku'] = $d->sku;
+				    $temp['product'] = $this->getProduct($d->sku);
 				    $temp['discount_type'] = $d->discount_type;
 				    $temp['discount'] = $d->discount;
 				    $temp['type'] = $d->type;
@@ -1330,7 +1331,7 @@ $subject = $data['subject'];
                 return "ok";
            }
 		   
-		   function deleteDiscount($xf)
+		   function removeDiscount($xf)
            {
            	$ret = [];
               $d = Discounts::where('id',$xf)->first();

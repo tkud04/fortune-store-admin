@@ -1015,3 +1015,20 @@ const updateOrder = (dt) => {
 		     $('#eo-submit').fadeIn();			
 	   });
 }
+
+const toggleProduct = (el,xf) =>{
+	  let c = el.checked,str = "";
+	  
+	  if(c){
+		 products.push(xf);
+	  }
+	  else{
+		  let temp = [];
+		  for(let i = 0; i < products.length; i++){
+			  if(products[i] != xf) temp.push(products[i]);
+		  }
+		  products = temp;
+	  }
+	  $('#products').val(JSON.stringify(products));
+	     
+}
